@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Un Regalo Especial</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #D9C4B0 0%, #D9C4B0 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: 'Dancing Script', cursive; /* Puedes usar una fuente de Google Fonts */
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Contenedor donde se arma el ramo */
+        #contenedor-ramo {
+            position: relative;
+            width: 350px; /* Ajusta según el tamaño de tu dibujo */
+            height: 350px;
+            margin-top: 30px;
+        }
+
+        /* Todas las imágenes ocupan el mismo lugar */
+        .capa-ramo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            opacity: 0; /* Invisibles al inicio */
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        /* La base aparece primero o con el primer click */
+        #capa-base {
+            z-index: 1;
+        }
+
+        button {
+            margin-top: 30px;
+            padding: 12px 25px;
+            background-color: #ff4d6d;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            z-index: 100;
+        }
+
+        /* Mensaje final */
+        #regalo-final {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+            animation: aparecer 2s forwards;
+        }
+
+        @keyframes aparecer { from { opacity: 0; } to { opacity: 1; } }
+
+        .carta {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            max-width: 400px;
+            margin: 20px auto;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="contenedor-ramo">
+        <img src="images/base.png" id="capa-base" class="capa-ramo">
+        <img src="images/flor1.png" class="capa-ramo">
+        <img src="images/flor2.png" class="capa-ramo">
+        <img src="images/flor3.png" class="capa-ramo">
+        <img src="images/flor4.png" class="capa-ramo">
+        <img src="images/flor5.png" class="capa-ramo">
+        <img src="images/flor6.png" class="capa-ramo">
+        <img src="images/brillos.png" class="capa-ramo">
+    </div>
+
+    <button id="boton-accion" onclick="siguientePaso()">Da clic</button>
+
+    <div id="regalo-final">
+        <h1 style="color: #c9184a;">Happy Valentine´s day!</h1>
+        <div class="carta">
+            <p>Holaa, te escribo esta pequeña carta ya que aunque te conozco hace poco, e visto y conocido la increible persona que eres, aunque estemos un poco distanciados logras sacarme una sonrisa cada que veo un mensaje tuyo, veo que eres una niña super increible, con gran carisma y un increible corazón, espero que te quedes en mi vida muchisimo tiempo, tq.</p>
+        </div>
+        <a href="TU_LINK_SPOTIFY" target="_blank" style="color: #1DB954; text-decoration: none; font-weight: bold;">
+            🎧 Escucha nuestra playlist
+        </a>
+    </div>
+
+    <script>
+        let pasoActual = 0;
+        const capas = document.querySelectorAll('.capa-ramo');
+        const boton = document.getElementById('boton-accion');
+        const final = document.getElementById('regalo-final');
+
+        function siguientePaso() {
+            if (pasoActual < capas.length) {
+                capas[pasoActual].style.opacity = "1";
+                pasoActual++;
+            }
+
+            if (pasoActual === capas.length) {
+                boton.style.display = "none";
+                final.style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>
